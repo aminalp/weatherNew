@@ -33,51 +33,6 @@ namespace weatherNew
         protected global::System.Web.UI.WebControls.DropDownList ddlCity;
 
         /// <summary>
-        /// btnGetWeather control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGetWeather;
-
-        /// <summary>
-        /// lblTemp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTemp;
-
-        /// <summary>
-        /// lblWindSpeed control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWindSpeed;
-
-        /// <summary>
-        /// lblWindDir control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblWindDir;
-
-        /// <summary>
-        /// lblFeelsLike control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFeelsLike;
-
-        /// <summary>
         /// txtTemp control.
         /// </summary>
         /// <remarks>
@@ -96,21 +51,21 @@ namespace weatherNew
         protected global::System.Web.UI.WebControls.TextBox txtWind;
 
         /// <summary>
-        /// btnCalc control.
+        /// lblFeelsLike control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCalc;
+        protected global::System.Web.UI.WebControls.Label lblFeelsLike;
 
         /// <summary>
-        /// lblResult control.
+        /// btnCalculate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblResult;
+        protected global::System.Web.UI.WebControls.Button btnCalculate;
     }
 }

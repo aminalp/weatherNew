@@ -14,7 +14,12 @@
             flex-direction: column;
             align-items: center;
         }
-        h1 { margin-top: 20px; color: #333; }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
         .container {
             background: #fff;
             border-radius: 12px;
@@ -23,14 +28,39 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             margin-top: 20px;
         }
-        select, input { width: 100%; padding: 10px; margin-top: 8px; border-radius: 6px; border: 1px solid #ccc; font-size: 15px; }
-        .weather-box { margin-top: 15px; background: #f7fafc; padding: 15px; border-radius: 8px; }
-        .weather-box p { margin: 6px 0; color: #333; }
-        .custom-section { margin-top: 25px; padding-top: 10px; border-top: 1px solid #ddd; }
-        footer { margin-top: 20px; color: #777; font-size: 14px; }
-        .btn { background: #4CAF50; color: white; border: none; border-radius: 6px; padding: 8px; width: 100%; cursor: pointer; margin-top: 10px; }
-        .btn:hover { background: #45a049; }
-        .error { color: red; }
+
+        select, input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+
+        .weather-box {
+            margin-top: 15px;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .weather-box p {
+            margin: 6px 0;
+            color: #333;
+        }
+
+        .custom-section {
+            margin-top: 25px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        footer {
+            margin-top: 20px;
+            color: #777;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -48,34 +78,32 @@
                 <asp:ListItem>Jyväskylä</asp:ListItem>
                 <asp:ListItem>Kuopio</asp:ListItem>
             </asp:DropDownList>
-            <asp:Button ID="btnGetWeather" runat="server" CssClass="btn" Text="Get Weather" OnClick="btnGetWeather_Click" />
 
             <div class="weather-box">
-                <p><strong>Temperature:</strong> <asp:Label ID="lblTemp" runat="server" Text="-"></asp:Label>°C</p>
-                <p><strong>Wind Speed:</strong> <asp:Label ID="lblWindSpeed" runat="server" Text="-"></asp:Label> km/h</p>
-                <p><strong>Wind Direction:</strong> <asp:Label ID="lblWindDir" runat="server" Text="-"></asp:Label></p>
-                <br />
-                <p style="color:OrangeRed;"><strong>Feels Like:</strong> <asp:Label ID="lblFeelsLike" runat="server" Text="-"></asp:Label>°C</p>
+                <p><strong>Temperature:</strong> 5°C</p>
+                <p><strong>Wind Speed:</strong> 12 km/h</p>
+                <p><strong>Wind Direction:</strong> NE</p>
+                <p style="color:OrangeRed;"><strong>Feels Like:</strong> 2°C</p>
             </div>
 
             <div class="custom-section">
-                <h3>Feels Like Calculator</h3>
+                <h3>Feels like calculator</h3>
                 <p style="color:LightSlateGrey;"><i>Try your own values</i></p>
 
                 <label>Custom Temperature (°C)</label>
-                <asp:TextBox ID="txtTemp" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtTemp" runat="server" />
 
                 <label>Custom Wind Speed (km/h)</label>
-                <asp:TextBox ID="txtWind" runat="server"></asp:TextBox>
+                <asp:TextBox ID="txtWind" runat="server" />
 
-                <asp:Button ID="btnCalc" runat="server" CssClass="btn" Text="Calculate Feels Like" OnClick="btnCalc_Click" />
-
-                <label style="color:OrangeRed;">Calculated Feels Like:</label>
-                <asp:Label ID="lblResult" runat="server" Text="-"></asp:Label>
+                <label style="color:OrangeRed;">Calculated Feels Like</label>
+                <asp:Label ID="lblFeelsLike" runat="server" Text="-" />
             </div>
+
+            <asp:Button ID="btnCalculate" runat="server" Text="Calculate!" OnClick="btnCalculate_Click" />
         </div>
 
-        <footer>WindX Weather App, developed by LAB UAS Students' BIT2025</footer>
+        <footer>WindX Weather App, developed by Kahapala, Faizan, Amin & Mahla</footer>
     </form>
 </body>
 </html>

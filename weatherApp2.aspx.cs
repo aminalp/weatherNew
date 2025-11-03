@@ -6,55 +6,25 @@ namespace weatherNew
     {
         Random rnd = new Random();
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void btnCalculate_Click(object sender, EventArgs e)
         {
-            // Nothing to do here. State is maintained automatically by ViewState
-        }
+            double temp = 0;
+            double wind = 0;
 
-        protected void btnGetWeather_Click(object sender, EventArgs e)
-        {
-            // Get selected city
-            string city = ddlCity.SelectedValue;
+            bool isTempValid = double.TryParse(txtTemp.Text, out temp);
+            bool isWindValid = double.TryParse(txtWind.Text, out wind);
 
-            // Generate random weather data
-            int temp = rnd.Next(-10, 26); // -10°C to 25°C
-            int windSpeed = rnd.Next(5, 41); // 5-40 km/h
-            string[] directions = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
-            string windDir = directions[rnd.Next(directions.Length)];
-
-            int feelsLike = temp - (int)(windSpeed * 0.1); // simple formula
-
-            // Display in labels
-            lblTemp.Text = temp.ToString();
-            lblWindSpeed.Text = windSpeed.ToString();
-            lblWindDir.Text = windDir;
-            lblFeelsLike.Text = feelsLike.ToString();
-        }
-
-        protected void btnCalc_Click(object sender, EventArgs e)
-        {
-            try
+            if (isTempValid && isWindValid)
             {
-                if (string.IsNullOrWhiteSpace(txtTemp.Text) || string.IsNullOrWhiteSpace(txtWind.Text))
-                {
-                    lblResult.Text = "Enter both values!";
-                    lblResult.ForeColor = System.Drawing.Color.Red;
-                    return;
-                }
-
-                double temp = Convert.ToDouble(txtTemp.Text);
-                double wind = Convert.ToDouble(txtWind.Text);
-
-                // Simple feels like formula
-                double feelsLike = temp - 0.7 * (wind / 10);
-                lblResult.Text = feelsLike.ToString("0.0") + " °C";
-                lblResult.ForeColor = System.Drawing.Color.OrangeRed;
+                // Simple formula: FeelsLike = Temp - (Wind / 5)
+                double feelsLike = temp - (wind / 5);
+                lblFeelsLike.Text = feelsLike.ToString("0.0") + "°C";
             }
-            catch
+            else
             {
-                lblResult.Text = "Invalid input!";
-                lblResult.ForeColor = System.Drawing.Color.Red;
+                lblFeelsLike.Text = "Invalid input!";
             }
         }
     }
 }
+
