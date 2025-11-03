@@ -40,7 +40,7 @@
         <div class="container">
             <label for="city">Select a City</label>
             <asp:DropDownList ID="ddlCity" runat="server">
-                <asp:ListItem>Helsinki</asp:ListItem>
+                <asp:ListItem>Helsinkii</asp:ListItem>
                 <asp:ListItem>Tampere</asp:ListItem>
                 <asp:ListItem>Turku</asp:ListItem>
                 <asp:ListItem>Oulu</asp:ListItem>
