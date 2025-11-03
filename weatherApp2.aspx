@@ -40,13 +40,13 @@
         <div class="container">
             <label for="city">Select a City</label>
             <asp:DropDownList ID="ddlCity" runat="server">
-                <asp:ListItem>Helsinkii</asp:ListItem>
+                <asp:ListItem>Helsinki</asp:ListItem>
                 <asp:ListItem>Tampere</asp:ListItem>
                 <asp:ListItem>Turku</asp:ListItem>
                 <asp:ListItem>Oulu</asp:ListItem>
                 <asp:ListItem>Lahti</asp:ListItem>
                 <asp:ListItem>Jyväskylä</asp:ListItem>
-                <asp:ListItem>Kuopiooo</asp:ListItem>
+                <asp:ListItem>Kuopio</asp:ListItem>
             </asp:DropDownList>
             <asp:Button ID="btnGetWeather" runat="server" CssClass="btn" Text="Get Weather" OnClick="btnGetWeather_Click" />
 
