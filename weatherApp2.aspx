@@ -80,12 +80,12 @@
             </asp:DropDownList>
 
             <div class="weather-box">
-                <p><strong>Temperature:</strong> 5°C</p>
-                <p><strong>Wind Speed:</strong> 12 km/h</p>
-                <p><strong>Wind Direction:</strong> NE</p>
-                <p style="color:OrangeRed;"><strong>Feels Like:</strong> 2°C</p>
+                <asp:Label ID="lblTemp" runat="server" Text="Temperature: -" /><br />
+                <asp:Label ID="lblWindSpeed" runat="server" Text="Wind Speed: -" /><br />
+                <asp:Label ID="lblWindDir" runat="server" Text="Wind Direction: -" /><br />
+                <asp:Label ID="lblFeelsLikeCity" runat="server" Text="Feels Like: -" ForeColor="OrangeRed" /><br />
             </div>
-
+            <asp:Button ID="btnShowWeather" runat="server" Text="Show Weather" OnClick="btnShowWeather_Click" />
             <div class="custom-section">
                 <h3>Feels like calculator</h3>
                 <p style="color:LightSlateGrey;"><i>Try your own values</i></p>
