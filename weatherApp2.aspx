@@ -46,7 +46,7 @@
                 <asp:ListItem>Oulu</asp:ListItem>
                 <asp:ListItem>Lahti</asp:ListItem>
                 <asp:ListItem>Jyväskylä</asp:ListItem>
-                <asp:ListItem>Kuopioo</asp:ListItem>
+                <asp:ListItem>Kuopiooo</asp:ListItem>
             </asp:DropDownList>
             <asp:Button ID="btnGetWeather" runat="server" CssClass="btn" Text="Get Weather" OnClick="btnGetWeather_Click" />
 
