@@ -11,60 +11,83 @@ namespace weatherNew
             double temp = 0;
             double wind = 0;
 
-            bool isTempValid = double.TryParse(txtTemp.Text, out temp);
-            bool isWindValid = double.TryParse(txtWind.Text, out wind);
+            try
+            {
+                temp = Convert.ToDouble(txtTemp.Text);
+                wind = Convert.ToDouble(txtWind.Text);
 
-            if (isTempValid && isWindValid)
-            {
-                
-                double feelsLike = temp - (wind / 5);
-                lblFeelsLike.Text = feelsLike.ToString("0.0") + "°C";
+                double vPow = Math.Pow(wind, 0.16);
+                double feelsLike = 13.12 + (0.6215 * temp) - (11.37 * vPow) + (0.3965 * temp * vPow);
+
+                if (temp > 10 || wind <= 4.8)
+                {
+                    lblFeelsLike.Text = "Feels like " + temp.ToString("0.0") + "°C (Wind chill applies at/below 10°C)";
+                }
+                else
+                {
+                    lblFeelsLike.Text = feelsLike.ToString("0.0") + "°C";
+                }
             }
-            else
+            catch (FormatException)
             {
-                lblFeelsLike.Text = "Invalid input!";
+                lblFeelsLike.Text = "Invalid input! Please enter numbers only.";
+            }
+            catch (Exception ex)
+            {
+                lblFeelsLike.Text = "An error occurred: " + ex.Message;
             }
         }
-    
+
         protected void btnShowWeather_Click(object sender, EventArgs e)
         {
             string city = ddlCity.SelectedValue;
 
-            
-            int temp = 0;
-            int wind = 0;
+            double temp = 0;
+            double wind = 0;
             string direction = "";
-            int feelsLike = 0;
 
             switch (city)
             {
                 case "Helsinki":
-                    temp = 6; wind = 14; direction = "NW"; feelsLike = 3;
+                    temp = 6; wind = 14; direction = "NW";
                     break;
                 case "Tampere":
-                    temp = 4; wind = 10; direction = "NE"; feelsLike = 2;
+                    temp = 4; wind = 10; direction = "NE";
                     break;
                 case "Turku":
-                    temp = 7; wind = 12; direction = "W"; feelsLike = 5;
+                    temp = 7; wind = 12; direction = "W";
                     break;
                 case "Oulu":
-                    temp = 2; wind = 18; direction = "N"; feelsLike = -1;
+                    temp = 2; wind = 18; direction = "N";
                     break;
                 case "Lahti":
-                    temp = 5; wind = 11; direction = "SE"; feelsLike = 3;
+                    temp = 5; wind = 11; direction = "SE";
                     break;
                 case "Jyväskylä":
-                    temp = 3; wind = 9; direction = "E"; feelsLike = 1;
+                    temp = 3; wind = 9; direction = "E";
                     break;
                 case "Kuopio":
-                    temp = 1; wind = 15; direction = "SW"; feelsLike = -2;
+                    temp = 1; wind = 15; direction = "SW";
                     break;
+            }
+
+            double vPow = Math.Pow(wind, 0.16);
+            double feelsLike = 13.12 + (0.6215 * temp) - (11.37 * vPow) + (0.3965 * temp * vPow);
+
+            string feelsLikeText;
+            if (temp > 10 || wind <= 4.8)
+            {
+                feelsLikeText = temp.ToString("0.0") + "°C";
+            }
+            else
+            {
+                feelsLikeText = feelsLike.ToString("0.0") + "°C";
             }
 
             lblTemp.Text = "Temperature: " + temp + "°C";
             lblWindSpeed.Text = "Wind Speed: " + wind + " km/h";
             lblWindDir.Text = "Wind Direction: " + direction;
-            lblFeelsLikeCity.Text = "Feels Like: " + feelsLike + "°C";
+            lblFeelsLikeCity.Text = "Feels Like: " + feelsLikeText;
         }
 
     }
