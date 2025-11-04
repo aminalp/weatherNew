@@ -21,7 +21,7 @@ namespace weatherNew
 
                 if (temp > 10 || wind <= 4.8)
                 {
-                    lblFeelsLike.Text = "Feels like " + temp.ToString("0.0") + "°C (Wind chill applies at/below 10°C)";
+                    lblFeelsLike.Text = "Feels like " + temp.ToString("0.0");
                 }
                 else
                 {
