@@ -80,6 +80,7 @@
             </asp:DropDownList>
 
             <div class="weather-box">
+                <asp:Label ID="lblTimestamp" runat="server" Text="Forecast time: -" /><br />
                 <asp:Label ID="lblTemp" runat="server" Text="Temperature: -" /><br />
                 <asp:Label ID="lblWindSpeed" runat="server" Text="Wind Speed: -" /><br />
                 <asp:Label ID="lblWindDir" runat="server" Text="Wind Direction: -" /><br />
