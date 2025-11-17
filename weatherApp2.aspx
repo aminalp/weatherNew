@@ -36,6 +36,7 @@
             border-radius: 6px;
             border: 1px solid #ccc;
             font-size: 15px;
+            box-sizing: border-box;
         }
 
         .weather-box {
@@ -60,6 +61,7 @@
             margin-top: 20px;
             color: #777;
             font-size: 14px;
+            text-align: center;
         }
     </style>
 </head>

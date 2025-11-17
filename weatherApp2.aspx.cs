@@ -2,6 +2,7 @@
 using System.Net;
 using System.Xml;
 using System.IO;
+using System.Globalization;
 
 namespace weatherNew
 {
@@ -50,10 +51,11 @@ namespace weatherNew
 
             string targetTimeString = nextFullHourUtc.ToString("s") + "Z";
 
-            string url = $"https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::timevaluepair&place={city}&parameters=temperature,windspeedms&";
+            string url = $"https://opendata.fmi.fi/wfs?service=WFS&version=2.0.0&request=getFeature&storedquery_id=fmi::forecast::harmonie::surface::point::timevaluepair&place={city}&parameters=temperature,windspeedms,winddirection&";
 
             double temp = 0;
             double windMS = 0;
+            double windDirection = 0;
             bool dataFound = false;
 
             try
@@ -78,16 +80,26 @@ namespace weatherNew
                     {
                         string value = node.SelectSingleNode("wml2:value", nsmgr).InnerText;
 
+                        if (value.Equals("NaN", StringComparison.OrdinalIgnoreCase))
+                        {
+                            continue;
+                        }
+
                         XmlNode timeSeries = node.SelectSingleNode("ancestor::wml2:MeasurementTimeseries", nsmgr);
                         string seriesId = timeSeries.Attributes["gml:id"].Value;
 
                         if (seriesId.Contains("temperature"))
                         {
-                            temp = Convert.ToDouble(value);
+                            temp = Convert.ToDouble(value, CultureInfo.InvariantCulture);
                             dataFound = true;
                         }
                         else if (seriesId.Contains("windspeedms"))
                         {
+                            windMS = Convert.ToDouble(value, CultureInfo.InvariantCulture);
+                        }
+                        else if (seriesId.Contains("winddirection"))
+                        {
+                            windDirection = Convert.ToDouble(value, CultureInfo.InvariantCulture);
                         }
                     }
                 }
@@ -109,17 +121,18 @@ namespace weatherNew
                 string feelsLikeText;
                 if (temp > 10 || windKMH <= 4.8)
                 {
-                    feelsLikeText = temp.ToString("0.0") + "°C"; 
+                    feelsLikeText = temp.ToString("0.0") + "°C";
                 }
                 else
                 {
-                    feelsLikeText = feelsLike.ToString("0.0") + "°C"; 
+                    feelsLikeText = feelsLike.ToString("0.0") + "°C";
                 }
 
                 lblTimestamp.Text = "Forecast for: " + nextFullHourUtc.ToLocalTime().ToString("HH:mm");
                 lblTemp.Text = "Temperature: " + temp.ToString("0.0") + "°C";
                 lblWindSpeed.Text = $"Wind Speed: {windMS.ToString("0.0")} m/s ({windKMH.ToString("0.0")} km/h)";
-                lblWindDir.Text = "Wind Direction: (not provided by this query)"; 
+                string cardinalDirection = ConvertDegreesToCardinal(windDirection);
+                lblWindDir.Text = $"Wind Direction: {cardinalDirection} ({windDirection.ToString("0.0")}°)";
                 lblFeelsLikeCity.Text = "Feels Like: " + feelsLikeText;
 
             }
@@ -134,6 +147,15 @@ namespace weatherNew
             }
         }
 
+        private string ConvertDegreesToCardinal(double degrees)
+        {
+            string[] directions = { "N", "NE", "E", "SE", "S", "SW", "W", "NW" };
+
+            int index = (int)Math.Floor(((degrees + 22.5) % 360) / 45.0);
+
+            return directions[index];
+        }
     }
-}
+ }
+    
 
